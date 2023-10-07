@@ -1,0 +1,9 @@
+--18.*3rd Highest Salary
+--Find the third highest salary in each department if there is such. 
+SELECT DepartmentID,Salary
+FROM
+(SELECT Salary,DepartmentID ,
+    DENSE_RANK() OVER (PARTITION BY DepartmentID ORDER BY Salary DESC) AS SalaryRanking
+FROM Employees
+GROUP BY DepartmentID,Salary) as subq
+WHERE subq.SalaryRanking = 3
