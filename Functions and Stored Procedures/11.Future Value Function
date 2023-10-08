@@ -1,0 +1,16 @@
+--11.Future Value Function
+-- Your task is to create a function ufn_CalculateFutureValue that accepts as parameters – sum (decimal), yearly interest rate (float), 
+-- and the number of years (int). It should calculate and return the future value of the initial sum rounded up 
+-- to the fourth digit after the decimal delimiter. Use the following formula:
+-- FV=I×(〖(1+R)〗^T)
+-- 	I – Initial sum
+-- 	R – Yearly interest rate
+-- 	T – Number of years
+CREATE OR ALTER FUNCTION ufn_CalculateFutureValue(@Sum decimal(18,2),@Rate float ,@Years int)
+RETURNS DECIMAL(20,4)
+AS
+BEGIN
+    RETURN @Sum * POWER((1+@Rate),@Years)
+END
+
+--SELECT dbo.ufn_CalculateFutureValue(1000, 0.1, 5)

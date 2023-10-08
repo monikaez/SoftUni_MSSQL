@@ -1,0 +1,13 @@
+--4.Employees from Town
+--Create a stored procedure usp_GetEmployeesFromTown that accepts town name as parameter and returns the first and last name of those employees, 
+--who live in the given town. 
+CREATE OR ALTER PROCEDURE usp_GetEmployeesFromTown
+@TownName NVARCHAR(50)
+AS
+SELECT FirstName,LastName
+FROM Employees AS e
+JOIN Addresses AS a ON a.AddressID=e.AddressID
+JOIN Towns AS t ON t.TownID=a.TownID
+WHERE t.Name = @TownName
+
+--EXEC usp_GetEmployeesFromTown 'Sofia'

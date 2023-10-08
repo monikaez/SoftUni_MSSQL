@@ -1,0 +1,13 @@
+--Part II – Queries for Bank Database
+--9.Find Full Name
+--You are given a database schema with tables AccountHolders(Id (PK), FirstName, LastName, SSN) 
+--and Accounts(Id (PK), AccountHolderId (FK), Balance).  Write a stored procedure usp_GetHoldersFullName that selects the full name of all people. 
+USE Bank
+GO
+
+CREATE OR ALTER PROCEDURE usp_GetHoldersFullName
+AS
+SELECT CONCAT_WS(' ',FirstName,LastName) AS [Full Name]
+FROM AccountHolders
+
+--EXEC usp_GetHoldersFullName

@@ -1,0 +1,11 @@
+--3.Town Names Starting With
+--Create a stored procedure usp_GetTownsStartingWith that accepts a string as parameter and returns all town names starting with that string. 
+
+CREATE OR ALTER PROCEDURE usp_GetTownsStartingWith
+ @InputString NVARCHAR(50)
+AS
+SELECT [Name] AS Town
+FROM Towns
+WHERE [Name] LIKE @inputString +'%'
+
+--EXEC usp_GetTownsStartingWit 'b'
