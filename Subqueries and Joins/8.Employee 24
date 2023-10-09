@@ -1,0 +1,17 @@
+--8.Employee 24
+-- Create a query that selects:
+-- •	EmployeeID
+-- •	FirstName
+-- •	ProjectName
+-- Filter all the projects of employee with Id 24. If the project has started during or after 2005 the returned value should be NULL.
+
+SELECT 
+    e.EmployeeID,
+    e.FirstName,
+    CASE WHEN p.StartDate > '2004-12-31' THEN NULL
+        ELSE p.[Name] 
+    END [ProjectName]
+FROM Employees e 
+JOIN EmployeesProjects ep ON ep.EmployeeID= e.EmployeeID
+JOIN Projects p ON p.ProjectID = ep.ProjectID
+WHERE e.EmployeeID = 24

@@ -1,0 +1,6 @@
+--11.Min Average Salary
+-- Create a query that returns the value of the lowest average salary of all departments.
+SELECT TOP(1) AVG(Salary) AS MinAverageSalary
+FROM Employees
+GROUP BY DepartmentID
+ORDER BY MinAverageSalary
