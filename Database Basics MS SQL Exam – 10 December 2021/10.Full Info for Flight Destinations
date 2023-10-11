@@ -1,0 +1,28 @@
+--10.Full Info for Flight Destinations
+-- Extract information about all flight destinations which Start between hours: 6:00 and 20:00 (both inclusive) 
+--and have ticket prices higher than 2500. Select the airport's name, time of the day,  
+--price of the ticket, passenger's full name, aircraft manufacturer, and aircraft model. Order the result by aircraft model ascending.
+-- Required columns:
+-- •	AirportName 
+-- •	DayTime
+-- •	TicketPrice
+-- •	FullName (passenger)
+-- •	Manufacturer
+-- •	Model
+
+SELECT
+    ap.AirportName,
+    fd.[Start] AS DayTime,
+    fd.TicketPrice,
+    p.FullName, -- (passenger)
+    a.Manufacturer,
+    a.Model
+FROM FlightDestinations AS fd 
+    JOIN Passengers as p ON p.ID=fd.PassengerId
+    JOIN Aircraft AS a ON a.Id = fd.AircraftId
+    JOIN Airports AS ap ON ap.Id=fd.AirportId
+
+WHERE 
+    CAST(fd.[Start] AS TIME) BETWEEN '6:00' AND '20:00'
+        AND TicketPrice>2500
+ORDER BY a.Model

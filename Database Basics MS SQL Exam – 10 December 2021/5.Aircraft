@@ -1,0 +1,14 @@
+--5.Aircraft
+-- Extract information about all the Aircraft. Order the results by aircraft's FlightHours descending.
+-- Required columns:
+-- •	Manufacturer
+-- •	Model
+-- •	FlightHours
+-- •	Condition
+SELECT 
+    Manufacturer,
+    Model,
+    FlightHours,
+    [Condition]
+FROM Aircraft
+ORDER BY FlightHours DESC

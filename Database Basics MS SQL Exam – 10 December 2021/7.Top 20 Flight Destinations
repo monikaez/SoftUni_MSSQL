@@ -1,0 +1,23 @@
+--7.Top 20 Flight Destinations
+-- Select top 20  flight destinations, where Start day is an even number.
+-- Extract DestinationId, Start date, passenger's FullName, AirportName, and TicketPrice. 
+--Order the result by TicketPrice descending, then by AirportName ascending.
+-- Required columns:
+-- •	DestinationId
+-- •	Start
+-- •	FullName (passenger)
+-- •	AirportName
+-- •	TicketPrice
+SELECT TOP(20)
+    fd.Id AS DestinationId,
+    fd.[Start],
+    p.FullName,
+    a.AirportName,
+    fd.TicketPrice
+FROM FlightDestinations AS fd 
+    JOIN Passengers AS p ON p.Id=fd.PassengerId
+    JOIN Airports AS a ON a.Id = fd.AirportId
+WHERE DATEPART(DAY,[Start]) % 2 =0 ---even day
+ORDER BY fd.TicketPrice DESC,
+        a.AirportName
+
